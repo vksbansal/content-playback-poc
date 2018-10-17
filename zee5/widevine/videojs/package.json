@@ -1,0 +1,16 @@
+{
+  "name": "videojs-hls",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@videojs/http-streaming": "^1.3.0",
+    "videojs-contrib-dash": "^2.10.0",
+    "videojs-contrib-eme": "^3.3.0"
+  }
+}
