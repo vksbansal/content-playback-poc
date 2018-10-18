@@ -1,5 +1,5 @@
 {
-  "name": "videojs-hls",
+  "name": "videojs-poc",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,8 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@videojs/http-streaming": "^1.3.0",
-    "videojs-contrib-dash": "^2.10.0",
+    "@videojs/http-streaming": "^1.3.1",
+    "videojs": "^1.0.0",
     "videojs-contrib-eme": "^3.3.0"
   }
 }
