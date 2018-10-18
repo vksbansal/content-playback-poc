@@ -1,21 +1,21 @@
-var manifestUri = 'manifest.mpd';
-var licenseUrl = 'licensekeyserver.com';
-var token = "token";
+var manifest = '';
+var license
+var token = '';
 
-var player = videojs('my_video_1');
+var player = videojs('video');
 
 player.ready(function () {
 
     player.eme();
     player.src({
-        src: manifestUri,
+        src: manifest,
         type: 'application/dash+xml',
         keySystems: {
             'com.widevine.alpha': {
                 getLicense: function (emeOptions, keyMessage, callback) {
                     let message = new Uint8Array(keyMessage);
                     videojs.xhr({
-                        uri: licenseUrl,
+                        uri: license,
                         method: 'POST',
                         responseType: 'arraybuffer',
                         body: message,

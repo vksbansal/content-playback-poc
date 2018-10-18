@@ -1,6 +1,5 @@
-var manifestUri = 'manifest.mpd';
-var licenseUrl = 'licensekeyserver.com';
-var token = "token";
+
+var manifestUri = 'http://vod-singtelhawk.quickplay.com/ss/vol2/s/SingTelContentProvider/wabs2713751/2018-10-09-08-28-48/wabs2713751movie/output_ss.ism/index.mpd';
 
 function initApp() {
     // Install built-in polyfills to patch browser incompatibilities.
@@ -19,38 +18,14 @@ function initApp() {
 function initPlayer() {
     // Create a Player instance.
     var video = document.getElementById('video');
-
     var player = new shaka.Player(video);
     player.configure({
         drm: {
             servers: {
-                'com.widevine.alpha': licenseUrl,
+                'com.widevine.alpha': 'http://aep-api.singtelhawk.quickplay.com/wvp/getlicense?service=aep_hooq&version=1.0&kid=26A048CF-C1DC-4C7F-AC32-870E0AE02090&ptoken=eyJjb250ZW50SWQiOiI2ODIwMiIsImxpY2Vuc2VFeHBpcnlUaW1lIjoxNTcwNjQ1Nzk5MDAwLCJlbnRpdGxlZENvbnRlbnRJZHMiOiJNalpCTURRNFEwWXRRekZFUXkwMFF6ZEdMVUZETXpJdE9EY3dSVEJCUlRBeU1Ea3ciLCJtYXhVc2VzIjoxLCJzaWduYXR1cmUiOiIxOWYyNzAwYjllZWFmMGE5M2M1Njg2NTM5YTYzYzUxNmY2YmI3ZTJiNmY3M2U3ZTFmNWRjZmZlYjRiMTQ4ZjM4IiwidW5pcXVlSWQiOiJiZGQ4MGEyMmNmYTAxZTBmIiwiaXNzdWVyIjoiU0lHTktFWV9QVE9LRU5fQ09OU1VNRV9JU1NVRVIiLCJhcGlLZXkiOiJhcGlLZXkiLCJrZXlWZXJzaW9uIjoidmVyczAxIiwiZ2VuZXJhdG9yVmFsaWRhdG9yRGF0YSI6IllYQndTV1E5TlRBeE5TWmhjSEJXWlhKemFXOXVQVEV1TUNaallYSnlhV1Z5U1dROU1qTSUzRCIsImV4cGlyeVRpbWUiOjE1Mzk4NTc4NzE5MTcsImNyZWF0ZWRUaW1lIjoxNTM5ODU3NzIxOTE3fQ==',
             }
         }
     });
-
-
-    player.getNetworkingEngine().registerRequestFilter(function (type, request) {
-        // Alias some utilities provided by the library.
-        var StringUtils = shaka.util.StringUtils;
-        var Uint8ArrayUtils = shaka.util.Uint8ArrayUtils;
-
-        // Only manipulate license requests:
-        if (type == shaka.net.NetworkingEngine.RequestType.LICENSE) {
-            debugger
-
-            request.responseType = 'arraybuffer';
-            request.headers = {
-                ...request.headers,
-                "content-type": "application/octet-stream",
-                "customData": token
-            }
-
-            request.body = new Uint8Array(request.body)
-        }
-    });
-
-
 
     // Attach player to the window to make it easy to access in the JS console.
     window.player = player;
