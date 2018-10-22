@@ -1,6 +1,6 @@
 var manifest = '';
 var token = '';
-var license = ''
+var license = '';
 
 
 var video = document.getElementById('video');
